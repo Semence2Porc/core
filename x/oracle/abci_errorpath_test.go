@@ -105,7 +105,7 @@ func TestEndBlockerStakingKeeperErrorLogging(t *testing.T) {
 		ctx := input.Ctx.WithLogger(logger)
 
 		input.OracleKeeper.StakingKeeper = stakingKeeperWrapper{
-			Keeper:           input.StakingKeeper,
+			Keeper:            input.StakingKeeper,
 			failPowerIterator: true,
 		}
 
