@@ -158,7 +158,12 @@ func (k Keeper) GetGasPriceForDenom(ctx sdk.Context, denom string) sdkmath.Legac
 }
 
 func (k Keeper) IsReverseCharge(ctx sdk.Context, emit bool) bool {
-	if !ctx.Value(types.ContextKeyTaxReverseCharge).(bool) {
+	// The reverse-charge flag is set by the ante handler. On contexts that did
+	// not flow through the ante handler (queries, genesis import/export,
+	// external keepers) the flag is absent, so the type assertion must use the
+	// comma-ok form instead of panicking on nil.
+	reverseCharge, ok := ctx.Value(types.ContextKeyTaxReverseCharge).(bool)
+	if !ok || !reverseCharge {
 		if emit {
 			ctx.EventManager().EmitEvent(
 				sdk.NewEvent(
