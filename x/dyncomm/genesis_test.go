@@ -3,12 +3,12 @@ package dyncomm_test
 import (
 	"testing"
 
+	"cosmossdk.io/math"
 	"github.com/stretchr/testify/require"
 
 	"github.com/classic-terra/core/v4/x/dyncomm"
 	dyncommkeeper "github.com/classic-terra/core/v4/x/dyncomm/keeper"
 	dyncommtypes "github.com/classic-terra/core/v4/x/dyncomm/types"
-	"cosmossdk.io/math"
 )
 
 func TestGenesisRoundTrip(t *testing.T) {
