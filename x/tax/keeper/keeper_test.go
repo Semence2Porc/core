@@ -12,11 +12,6 @@ import (
 )
 
 // TestIsReverseCharge covers the reverse-charge context flag handling.
-//
-// Regression test: the flag is only set by the ante handler. On contexts that
-// did not flow through the ante handler (queries, genesis import/export,
-// external keeper calls) the flag is absent from the context, which must not
-// panic but simply report "no reverse charge".
 func TestIsReverseCharge(t *testing.T) {
 	tk := keeper.Keeper{}
 	baseCtx := sdk.NewContext(nil, tmproto.Header{}, false, log.NewNopLogger())
